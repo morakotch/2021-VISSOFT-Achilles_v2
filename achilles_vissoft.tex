@@ -20,7 +20,7 @@
 \newcommand{\boxedtext}[1]{\fbox{\scriptsize\bfseries\textsf{#1}}}
 \newcommand{\nota}[2]{
 	\boxedtext{#1}
-		{\small$\blacktriangleright$\emph{\textsl{#2}}$\blacktriangleleft$}
+	{\small$\blacktriangleright$\emph{\textsl{#2}}$\blacktriangleleft$}
 }
 
 \newcommand{\FIXME}[1]{{\color{red}\textsf{FIXME: #1}}}
@@ -29,7 +29,7 @@
 
 \begin{document}
 	
-\title{Achilles: Prioritizing Vulnerable Dependency Updates through Dependency Graphs}
+	\title{Achilles: Prioritizing Vulnerable Dependency Updates through Dependency Graphs}
 	
 	\author{\IEEEauthorblockN{Vipawan Jarukitpipat\textsuperscript{\textasteriskcentered}, Wachirayana Wanprasert\textsuperscript{\textasteriskcentered}, Klinton Chhun\textsuperscript{\textasteriskcentered},
 			Chaiyong Ragkhitwetsagul\textsuperscript{\textasteriskcentered}, \\
@@ -50,7 +50,7 @@
 	
 	\maketitle
 	\thispagestyle{plain}
-    \pagestyle{plain}
+	\pagestyle{plain}
 	
 	\begin{abstract}
 		The use of third-party dependencies in software applications is commonplace for contemporary software development, especially with the rise of available software library ecosystems like the Node.js packages (npm). 
@@ -81,43 +81,43 @@
 	
 	In this paper, we adopt a visual approach to understand how to support a developers decision to prioritize a vulnerable dependency update.
 	As a prototype, we present \texttt{Achilles}, which is a tool that shows a visualization (i.e., using dependency graphs) of both direct and indirect dependencies that are affected by software vulnerability attacks.
-		To evaluate the effectiveness of \texttt{Achilles}, we performed a user study against the state of the art tools (Dependabot and npm audit). 
-		We show that there is a difference in using a visualization, as it provides more intuitive information on the complexity, and highlights the directs and indirect vulnerable dependencies when compared to the textual results of both Dependabot and npm audit.
-		Our work shows that  visual tool support is needed for prioritizing dependency updates. 
+	To evaluate the effectiveness of \texttt{Achilles}, we performed a user study against the state of the art tools (Dependabot and npm audit). 
+	We show that there is a difference in using a visualization, as it provides more intuitive information on the complexity, and highlights the directs and indirect vulnerable dependencies when compared to the textual results of both Dependabot and npm audit.
+	Our work shows that  visual tool support is needed for prioritizing dependency updates. 
 	
 	\section{Background}
 	In this section, we show the list of prior works related to software dependencies, issues on dependency updating, and security vulnerabilities.
 	\subsection{Software Dependencies}
 	\subsubsection{Direct vs.~Indirect Dependencies}
 	\subsection{Developer Struggles with Updating}
-        Prior studies showed that developers are slow in updating their dependencies \citep{Robbes:2012, Hora:2015, Sawant2016, Bavota:2015, Ihara:2017}.
-        \citet{Decan:2017} investigated the evolution and issues of dependency from different ecosystems.
-        They revealed that these ecosystems have the issue with dependency update.
-        This issue is not only affect to the direct user of dependencies, but it is also transitively to indirect user of these dependencies.
-        \citet{Bogart:2015} conducted a survey and found that developers prefer to keep outdated dependencies as the new version might breaks their code.
-        \citet{Kula:2017} found that updating dependencies task is influenced by the amount of effort needed to change the API in the application.
-        The important updates such as vulnerability fix and new major version that introduce new features are also influence how long developers need to adopt these updates.
-        \citet{Decan:ICSME:2018} conducted an empirical study of technical lag in the npm ecosystem and found that the lags occur as the semantic versions of dependencies are not cover the latest release.
-        They also found that using proper semantic versioning could reduces the technical lag.
-        \citet{Chinthanet2021} focused on the lags of update in the case of vulnerability fix releases in npm ecosystem.
-        They confirmed that despite the size of vulnerability fixes is small in terms of commit, developers still have a slow reaction to those fixes which cause lags of updates through out the dependency network.
-        They also find that the severity of vulnerabilities is one of the factors that influences lags.
-        
+	Prior studies showed that developers are slow in updating their dependencies \citep{Robbes:2012, Hora:2015, Sawant2016, Bavota:2015, Ihara:2017}.
+	\citet{Decan:2017} investigated the evolution and issues of dependency from different ecosystems.
+	They revealed that these ecosystems have the issue with dependency update.
+	This issue is not only affect to the direct user of dependencies, but it is also transitively to indirect user of these dependencies.
+	\citet{Bogart:2015} conducted a survey and found that developers prefer to keep outdated dependencies as the new version might breaks their code.
+	\citet{Kula:2017} found that updating dependencies task is influenced by the amount of effort needed to change the API in the application.
+	The important updates such as vulnerability fix and new major version that introduce new features are also influence how long developers need to adopt these updates.
+	\citet{Decan:ICSME:2018} conducted an empirical study of technical lag in the npm ecosystem and found that the lags occur as the semantic versions of dependencies are not cover the latest release.
+	They also found that using proper semantic versioning could reduces the technical lag.
+	\citet{Chinthanet2021} focused on the lags of update in the case of vulnerability fix releases in npm ecosystem.
+	They confirmed that despite the size of vulnerability fixes is small in terms of commit, developers still have a slow reaction to those fixes which cause lags of updates through out the dependency network.
+	They also find that the severity of vulnerabilities is one of the factors that influences lags.
+	
 	
 	\subsection{Dependency Vulnerabilities}
 	\subsubsection{GitHub Dependabot}
-	    In 2019, GitHub acquired Dependabot, the bot that automatically creates the pull requests to keep dependencies secure and up-to-date for GitHub repository \citep{Web:Dependabot}.
-	    Dependabot currently supports repository written in 15 languages.
-	    The process of Dependabot consists of three steps: (i) the bot finds outdated or vulnerable dependencies, (ii) the bot opens a pull request for each dependency, and (iii) the developers check the changes and merge them to the repository.
-	    The recent work from \citet{Alfadel:MSR2021} found that developers are highly receptive to pull requests from Dependabot.
-	   % The recent work from Alfadel et. al. investigated the degree to which developers adopt the bot in their repositories \cite{Alfadel:MSR2021}.
-	   % They found that developers are highly receptive to pull requests from Dependabot.
-	    However, the limitation of Dependabot is that it cannot detect vulnerability from indirect dependencies.\footnote{\url{https://github.com/Dependabot/Dependabot-core/issues/2640}}
+	In 2019, GitHub acquired Dependabot, the bot that automatically creates the pull requests to keep dependencies secure and up-to-date for GitHub repository \citep{Web:Dependabot}.
+	Dependabot currently supports repository written in 15 languages.
+	The process of Dependabot consists of three steps: (i) the bot finds outdated or vulnerable dependencies, (ii) the bot opens a pull request for each dependency, and (iii) the developers check the changes and merge them to the repository.
+	The recent work from \citet{Alfadel:MSR2021} found that developers are highly receptive to pull requests from Dependabot.
+	% The recent work from Alfadel et. al. investigated the degree to which developers adopt the bot in their repositories \cite{Alfadel:MSR2021}.
+	% They found that developers are highly receptive to pull requests from Dependabot.
+	However, the limitation of Dependabot is that it cannot detect vulnerability from indirect dependencies.\footnote{\url{https://github.com/Dependabot/Dependabot-core/issues/2640}}
 	\subsubsection{npm-audit}
-	    In 2018, npm introduced the new command for assessing the vulnerability from npm package dependencies called npm-audit \citep{webnpm-audit}.
-	    The command submits the list of dependencies from package.json file to the npm registry for a vulnerability report.
-	    Node.js developers could receive the vulnerability report while installing the dependencies from npm by default.
-	    Developers are also able to call npm-audit manually when they need.
+	In 2018, npm introduced the new command for assessing the vulnerability from npm package dependencies called npm-audit \citep{webnpm-audit}.
+	The command submits the list of dependencies from package.json file to the npm registry for a vulnerability report.
+	Node.js developers could receive the vulnerability report while installing the dependencies from npm by default.
+	Developers are also able to call npm-audit manually when they need.
 	
 	\section{The Achilles Tool}
 	\subsection{Tool Design}
@@ -129,10 +129,10 @@
 	\end{figure}
 	
 	\begin{figure}[tb]
-    	\centering
-    	\includegraphics[width=\columnwidth]{Figures/Achilles-report.jpg}
-    	\caption{Achilles vulnerability report\todo{can you combine page 1 and 2 together into one image}}
-    	\label{fig:vul-report-1}
+		\centering
+		\includegraphics[width=\columnwidth]{Figures/Achilles-report.jpg}
+		\caption{Achilles vulnerability report\todo{can you combine page 1 and 2 together into one image}}
+		\label{fig:vul-report-1}
 	\end{figure}
 	
 	We create a web-based prototype tool called ``Achilles''\footnote{The name Achilles has been chosen as a metaphor of Achilles' heel, which represents a weakness in a software project.} for demonstrating the concept of dependency graph visualization. Achilles connects to GitHub and retrieves the user's npm repositories. It then analyzes the repository's dependencies and produces the dependency graph visualization and a security analysis report. As shown in Figure~\ref{fig:system_architecture}, the tool consists of the front-end and the back-end parts. The front-end part consist of GraphQL, D3, and React frameworks. The back-end parts consists of Node.js and MongoDB Atlas database.
@@ -152,12 +152,19 @@
 	
 	\subsection{Visualization Design}
 	
-		\begin{figure*}[tb]
+	\begin{figure}[tb]
 		\centering
-		\includegraphics[width=1.5\columnwidth]{Figures/Viz-concept-1.jpg}
+		\includegraphics[width=\columnwidth]{Figures/Viz-concept-1.jpg}
 		\caption{Visualization design of the npm dependency graph}
 		\label{fig:viz-concept}
-	\end{figure*}
+	\end{figure}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=\columnwidth]{Figures/tooltip_moderate}
+		\caption{A tool tip that shows the dependency's vulnerability information}
+		\label{fig:tooltip_moderate}
+	\end{figure}
 	
 	\section{Evaluation Setup}
 	We performed a user study to evaluate the effectiveness of the dependency graph visualization provided by Achilles.
@@ -272,7 +279,7 @@
 	We call the two tasks that the participants had to perform \textit{Task 1 Vulnerabilities with Complex Dependencies} and \textit{Task 2 Vulnerabilities with Indirect Dependencies}. For Task 1, we aim to test whether the dependency graph visualization  would affect the participants’ decision on the dependency prioritization when the project contains ``complex'' dependencies. To achieve this, we created an npm project which contained 4 real-world vulnerable dependencies. We were interested in the dependencies which had different severity levels and also had different complexity levels. Thus, we selected two dependencies, \texttt{three} and \texttt{type-graphql}, that had high severity vulnerabilities and two dependencies, \texttt{xmldom} and \texttt{pug} that had low severity vulnerabilities. Two of the dependencies, \texttt{three} and \texttt{xmldom}, did not have any dependencies while the other two dependencies, \texttt{type-graphql} and \texttt{pug}, depended on a large number of dependencies, i.e., they introduced complexity into the dependency chain. 
 	We made sure that the 4 selected dependencies could be detected by Dependabot, npm audit, and Achilles. Table~\ref{table:cha-teat1} shows the information of the dependencies in Task 1. The visualization of the dependencies in Tasks 1 is depicted in Figure \ref{fig:graphtest1}. \FIXME{which source of this level of vulnerabilities are from?} From the visualization, we can see %the \texttt{three} and \texttt{xmldom} do not have any other dependencies. On the other hand, 
 	that the 4 selected dependencies are direct dependencies of the project. Furthermore, \texttt{pug} directly depends on 8 other dependencies (highlighted with blue nodes) and \texttt{type-graphql} directly depend on 9 other dependencies. Their direct dependencies also depend on several other dependencies (green and yellow nodes).
-		
+	
 	\begin{table}[tb]
 		\centering
 		\caption{Task 1: Vulnerabilities with Complex Dependencies}
@@ -418,10 +425,10 @@
 				& High Severity & Version                         & A9                                            & 1               \\ 
 				& Indirect dep. & Severity                        & A7                                            & 1               \\ 
 				\bottomrule
-	\end{tabular}
-}
-	\label{table:prioritization_factor}
-\end{table}
+			\end{tabular}
+		}
+		\label{table:prioritization_factor}
+	\end{table}
 	
 	\subsubsection{Controlled Group (npm-audit)}
 	According to Table \ref{table:result-Ach-t1}, we similarly found two sub groups of participants, changed and unchanged groups, according to the prioritization order.
@@ -445,7 +452,7 @@
 	
 	Nonetheless, after using Achilles, many participants took the types of dependency (whether directly or indirectly) into account. Within the changed group, four participants A1, A6, A8, and A10, use severity as their first priority factor and for the second priority factor, consider updating direct dependencies first. Two participants, A2 and A4, choose to update direct dependencies first and select high severity as the second priority factor. On the other hand, participant A7 updates the indirect dependencies first before considering the severity level.
 	
-
+	
 	
 	\begin{table*}[tb]
 		\caption{Task 2 Vulnerabilities with Direct/Indirect Dependencies: Result by Participants}
@@ -491,33 +498,33 @@
 		\label{table:ach-indirect}
 	\end{table*}
 	
-%	\begin{table*}[tb]
-%		\caption{Factors for Prioritizing Package Updates}
-%		\centering
-%		\begin{tabular}{|c|c|c|c|c|}
-%			\hline
-%			\textbf{Tool} & \textbf{First priority factor}  & \textbf{Second priority factor} & \textbf{Cases}                                & \textbf{Number} \\ \hline
-%			\multicolumn{1}{|c|}{\multirow{8}{*}{\textbf{Dependabot}}} & \multirow{4}{*}{High Severity}  & Low Severity                    & A1,A2, A4, A10                                & 4               \\ \cline{3-5} 
-%			\multicolumn{1}{|c|}{}                                     &                                 & Direct                          & A5                                            & 1               \\ \cline{3-5} 
-%			\multicolumn{1}{|c|}{}                                     &                                 & Issue type                      & A6                                            & 1               \\ \cline{3-5} 
-%			\multicolumn{1}{|c|}{}                                     &                                 & Recent use                      & A8                                            & 1               \\ \cline{2-5} 
-%			\multicolumn{1}{|c|}{}                                     & Direct                          & High Severity                   & A3                                            & 1               \\ \cline{2-5} 
-%			\multicolumn{1}{|c|}{}                                     & Indirect                        & Severity                        & A9                                            & 1               \\ \cline{2-5} 
-%			\multicolumn{1}{|c|}{}                                     & Number of indirect dependencies & \multicolumn{1}{l|}{}           & A7                                            & 1               \\ \cline{2-5} 
-%			\multicolumn{1}{|c|}{}                                     & \multicolumn{3}{c|}{\textbf{Total}}                                                                               & 10              \\ \hline
-%			\multicolumn{1}{|c|}{\multirow{5}{*}{\textbf{Achilles}}}   & \multirow{2}{*}{High Severity}  & Direct                          & A1, A5, A6, A8, A10                           & 5               \\ \cline{3-5} 
-%			\multicolumn{1}{|c|}{}                                     &                                 & Version                         & A9                                            & 1               \\ \cline{2-5} 
-%			\multicolumn{1}{|c|}{}                                     & Direct                          & High Severity                   & A2(with third factor of low severity), A3, A4 & 3               \\ \cline{2-5} 
-%			\multicolumn{1}{|c|}{}                                     & Indirect                        & Severity                        & A7                                            & 1               \\ \cline{2-5} 
-%			\multicolumn{1}{|c|}{}                                     & \multicolumn{3}{c|}{\textbf{Total}}                                                                               & 10              \\ \hline
-%		\end{tabular}
-%		\label{table:ach-pri-indirect}
-%	\end{table*}
+	%	\begin{table*}[tb]
+	%		\caption{Factors for Prioritizing Package Updates}
+	%		\centering
+	%		\begin{tabular}{|c|c|c|c|c|}
+	%			\hline
+	%			\textbf{Tool} & \textbf{First priority factor}  & \textbf{Second priority factor} & \textbf{Cases}                                & \textbf{Number} \\ \hline
+	%			\multicolumn{1}{|c|}{\multirow{8}{*}{\textbf{Dependabot}}} & \multirow{4}{*}{High Severity}  & Low Severity                    & A1,A2, A4, A10                                & 4               \\ \cline{3-5} 
+	%			\multicolumn{1}{|c|}{}                                     &                                 & Direct                          & A5                                            & 1               \\ \cline{3-5} 
+	%			\multicolumn{1}{|c|}{}                                     &                                 & Issue type                      & A6                                            & 1               \\ \cline{3-5} 
+	%			\multicolumn{1}{|c|}{}                                     &                                 & Recent use                      & A8                                            & 1               \\ \cline{2-5} 
+	%			\multicolumn{1}{|c|}{}                                     & Direct                          & High Severity                   & A3                                            & 1               \\ \cline{2-5} 
+	%			\multicolumn{1}{|c|}{}                                     & Indirect                        & Severity                        & A9                                            & 1               \\ \cline{2-5} 
+	%			\multicolumn{1}{|c|}{}                                     & Number of indirect dependencies & \multicolumn{1}{l|}{}           & A7                                            & 1               \\ \cline{2-5} 
+	%			\multicolumn{1}{|c|}{}                                     & \multicolumn{3}{c|}{\textbf{Total}}                                                                               & 10              \\ \hline
+	%			\multicolumn{1}{|c|}{\multirow{5}{*}{\textbf{Achilles}}}   & \multirow{2}{*}{High Severity}  & Direct                          & A1, A5, A6, A8, A10                           & 5               \\ \cline{3-5} 
+	%			\multicolumn{1}{|c|}{}                                     &                                 & Version                         & A9                                            & 1               \\ \cline{2-5} 
+	%			\multicolumn{1}{|c|}{}                                     & Direct                          & High Severity                   & A2(with third factor of low severity), A3, A4 & 3               \\ \cline{2-5} 
+	%			\multicolumn{1}{|c|}{}                                     & Indirect                        & Severity                        & A7                                            & 1               \\ \cline{2-5} 
+	%			\multicolumn{1}{|c|}{}                                     & \multicolumn{3}{c|}{\textbf{Total}}                                                                               & 10              \\ \hline
+	%		\end{tabular}
+	%		\label{table:ach-pri-indirect}
+	%	\end{table*}
 	
 	%After seeing the graph visualization in Achilles, there are seven participants whose types of dependency have become the factor when they are prioritizing the package update as the first or the second priority factor. 
 	
 	\subsubsection{Controlled Group (npm-audit)}
-%	According to table \ref{table:ach-indirect}, there are two groups of participants categorized by the prioritization order.
+	%	According to table \ref{table:ach-indirect}, there are two groups of participants categorized by the prioritization order.
 	According to Table~\ref{table:ach-indirect}, six participants are in the changed group (N3, N4, N6, N7, N8 and N9) and four participants are in the unchanged group (N1, N2, N5, and N10). 
 	
 	%Even though participant N1 did not change the order, the criteria is different. After seeing Dependabot report, participant N1 uses existing solving pull request and severity as the factor, and after seeing the npm audit report, the participant considers direct dependency and severity. Participants N2, N5, and N9 only assess the severity.
@@ -526,18 +533,18 @@
 	
 	%According to Table \ref{table:npm-pri2}, after seeing the vulnerability report from Dependabot, eight participants use severity as the major factor for prioritization. After seeing the graph visualization in Achilles, there are four participants whose types of dependency have become the factor when they prioritize the package update as the first or second priority factor.
 	
-\subsection{Answers to Research Questions}
+	\subsection{Answers to Research Questions}
 	From the results, we can answer the two research questions as follows.
 	
-\subsubsection{RQ1: How well does the dependency graph visualization support developer’s decision on prioritizing vulnerability to fix?}
+	\subsubsection{RQ1: How well does the dependency graph visualization support developer’s decision on prioritizing vulnerability to fix?}
 	From the user study, six participants take complexity into account after seeing the graph visualization. Nine out of ten participants consider types of dependencies (direct or indirect dependencies) as the factor for prioritization after seeing the graph visualization.
 	To answer the RQ, \textbf{we found that the graph visualization of Achilles helps supporting developers' decisions on prioritizing vulnerability to fix by providing more information about complexity and direct/indirect dependencies compared to the traditional list of vulnerabilities provided by Dependabot}.
 	
-\subsubsection{RQ2: How well does the dependency graph visualization perform compared to the state-of-the-art tools?}
+	\subsubsection{RQ2: How well does the dependency graph visualization perform compared to the state-of-the-art tools?}
 	
-We found some differences between our dependency graph visualization and state-of-the-art tools on affecting developers' decision on prioritizing vulnerabilities to fix. 
+	We found some differences between our dependency graph visualization and state-of-the-art tools on affecting developers' decision on prioritizing vulnerabilities to fix. 
 	
-We can see from Table~\ref{table:result-Ach-t1}, in Task 1 where vulnerable packages have different complexities, the number of participants who used Achilles and changed their prioritization order is larger than the number of participants who used npm audit. The list of vulnerabilities provided by npm audit affected the developers' decision 4 out of 10 cases, while the dependency graph visualization affected the developers' decision to update vulnerabilities 7 out of 10 cases. %Table \ref{table:compare-ach} Comparison of developers' decisions after seeing the graph and table visualization on the task with indirect vulnerabilities
+	We can see from Table~\ref{table:result-Ach-t1}, in Task 1 where vulnerable packages have different complexities, the number of participants who used Achilles and changed their prioritization order is larger than the number of participants who used npm audit. The list of vulnerabilities provided by npm audit affected the developers' decision 4 out of 10 cases, while the dependency graph visualization affected the developers' decision to update vulnerabilities 7 out of 10 cases. %Table \ref{table:compare-ach} Comparison of developers' decisions after seeing the graph and table visualization on the task with indirect vulnerabilities
 	
 	%Table \ref{table:compare-ach} Comparison of developers' decisions after seeing the graph and table visualization on the task having vulnerabilities with complexity
 	
@@ -556,40 +563,40 @@ We can see from Table~\ref{table:result-Ach-t1}, in Task 1 where vulnerable pack
 		\end{tabular}
 		\label{table:compare-ach}
 	\end{table}
-
-We can see from Table~\ref{table:ach-indirect}, for Task 2 where vulnerable packages have different types of dependencies. The number of participants who use Achilles and change the prioritization order is also larger than participants who use npm audit. The graph visualization in Achilles does outperform npm audit in providing information about the types of dependencies since both of the tools represent direct and indirect dependencies differently. However, the differences between the two group is not as large as in Task 1. The list of vulnerabilities provided by npm audit affected the developers' decision 6 out of 10 cases, while the dependency graph visualization affected the developers' decision to update vulnerabilities 7 out of 10 cases.
-
-The result of asking the participants who used npm audit to see Achilles visualization of Task 1 and Task 2 and performed the prioritization again is shown in Table \ref{table:x3}. In Task 1, there are seven participants change their prioritization since they consider complexity of the packages which introduced by Achilles as a prioritization factor. There is no significant differences in Task 2 since both Achilles and npm audit provide types of dependencies (whether direct or indirect dependencies).
-
-To answer the RQ, \textbf{the dependency graph visualization offers more information to the developers and supports their decision on prioritization of the dependencies to fix better than npm audit.} We found large differences of dependency prioritization between Achilles and npm audit when the project contains dependencies with complexities. However, in the case of the project containing direct/indirect dependencies, the differences between the two tools are small.
-
-\begin{table}[tb]
-	\centering
-	\caption{Developers' Decisions using Achilles Compared to npm audit}
-	\begin{tabular}{ccc} 
-		\toprule
-		Decision & Task 1 & Task 2 \\
-		\midrule
-		Same & 3 & 5\\ 
-		Different & 7 & 5 \\
-		\bottomrule
-	\end{tabular}
-	\label{table:x3}
-\end{table}
 	
-\section{Threats to Validity}
-
-\section{Conclusion}
+	We can see from Table~\ref{table:ach-indirect}, for Task 2 where vulnerable packages have different types of dependencies. The number of participants who use Achilles and change the prioritization order is also larger than participants who use npm audit. The graph visualization in Achilles does outperform npm audit in providing information about the types of dependencies since both of the tools represent direct and indirect dependencies differently. However, the differences between the two group is not as large as in Task 1. The list of vulnerabilities provided by npm audit affected the developers' decision 6 out of 10 cases, while the dependency graph visualization affected the developers' decision to update vulnerabilities 7 out of 10 cases.
+	
+	The result of asking the participants who used npm audit to see Achilles visualization of Task 1 and Task 2 and performed the prioritization again is shown in Table \ref{table:x3}. In Task 1, there are seven participants change their prioritization since they consider complexity of the packages which introduced by Achilles as a prioritization factor. There is no significant differences in Task 2 since both Achilles and npm audit provide types of dependencies (whether direct or indirect dependencies).
+	
+	To answer the RQ, \textbf{the dependency graph visualization offers more information to the developers and supports their decision on prioritization of the dependencies to fix better than npm audit.} We found large differences of dependency prioritization between Achilles and npm audit when the project contains dependencies with complexities. However, in the case of the project containing direct/indirect dependencies, the differences between the two tools are small.
+	
+	\begin{table}[tb]
+		\centering
+		\caption{Developers' Decisions using Achilles Compared to npm audit}
+		\begin{tabular}{ccc} 
+			\toprule
+			Decision & Task 1 & Task 2 \\
+			\midrule
+			Same & 3 & 5\\ 
+			Different & 7 & 5 \\
+			\bottomrule
+		\end{tabular}
+		\label{table:x3}
+	\end{table}
+	
+	\section{Threats to Validity}
+	
+	\section{Conclusion}
 	
 	\bibliographystyle{IEEEtranN}
 	\bibliography{references.bib}
 	
-% BACKUP %
-\clearpage
-
-\section{These are backup data}
+	% BACKUP %
+	\clearpage
 	
-		\begin{table*}[tb]
+	\section{These are backup data}
+	
+	\begin{table*}[tb]
 		\centering
 		\caption{The Result of npm audit Task Case No. 1 (Complexity)}
 		\begin{tabular}{|l|l|l|c|l|l|}
