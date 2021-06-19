@@ -42,6 +42,13 @@
 @string {SOHEAL = "International Workshop on Software Health (SoHeal)"}
 @string {VISSOFT = "IEEE Working Conference on Software Visualization (VISSOFT)"}
 
+@techreport{Snyk2020,
+author = {Snyk},
+institution = {Snyk},
+title = {{The state of open source security report}},
+year = {2020}
+}
+
 @article{Cox2019,
 	author = {Cox, Russ},
 	journal = {Queue},
@@ -218,6 +225,8 @@ author={S. {Kawaguchi} and P. K. {Garg} and M. {Matsushita} and K. {Inoue}},  bo
     lastchecked = "9 November 2020"
 }
 
+
+
 @webpage{websnykinfo,
     author  = "Rohit Mathur",
     title   = "SNYK :A security platform introduction",
@@ -243,8 +252,8 @@ author={S. {Kawaguchi} and P. K. {Garg} and M. {Matsushita} and K. {Inoue}},  bo
     lastchecked = "9 November 2020"
 }
 
-@webpage{webnpm-audit,
-    author  = "npm, Inc.",
+@webpage{Web:npm_audit,
+    author  = "npm",
     title   = "Auditing package dependencies for security vulnerabilities",
     url     = "https://docs.npmjs.com/auditing-package-dependencies-for-security-vulnerabilities",
     lastchecked = "20 February 2021"
@@ -279,16 +288,16 @@ doi = {10.1007/s10664-013-9279-3}
     author  = "GitHub Docs",
     title   = "Searching code",
     url     = "https://docs.github.com/en/github/searching-for-information-on-github/searching-code",
-    lastchecked = "19 April 2021"
+    lastchecked = "19 June 2021"
 }
 
-@webpage{Web:dependabot,
+@webpage{Web:github_dependabot,
 author = {GitHub},
-title = {Dependabot},
-url = "https://dependabot.com",
+title = {{Dependabot}},
+url = "https://tinyurl.com/dependabot",
 month = {May},
-year = {2019},
-note = {(Accessed on 06/10/2021)}
+year = {2020},
+lastchecked = "15 June 2021"
 }
 
 @inproceedings{Alfadel:MSR2021,
@@ -297,7 +306,7 @@ booktitle = MSR,
 title = {On the Use of Dependabot Security Pull Requests},
 year = {2021},
 pages = {254-265},
-month = {may}
+month = {May}
 }
 
 @article{Noei:EMSE2017,
@@ -1061,7 +1070,7 @@ month = {may}
 @inproceedings{Robbes:2012,
 	author = {Robbes, Romain and Lungu, Mircea and R\"{o}thlisberger, David},
 	title = {{How Do Developers React to API Deprecation?: The Case of a Smalltalk Ecosystem}},
-	booktitle = {20th International Symposium on the Foundations of Software Engineering (FSE)},
+	booktitle = FSE,
 	year = {2012},
 	pages = {56:1--56:11},
 	numpages = {11},
@@ -1092,7 +1101,7 @@ month = {may}
 @inproceedings{hora2015apiwave,
 	title={apiwave: Keeping track of API popularity and migration},
 	author={Hora, Andr{\'e} and Valente, Marco Tulio},
-	booktitle={International Conference on Software Maintenance and Evolution},
+	booktitle=ICSME,
 	year={2015}
 }
 
@@ -1571,15 +1580,6 @@ year = {2017},
 note = {(Accessed on 04/20/2020)}
 }
 
-@misc{Web:npm_audit,
-author = {{NPM}},
-title = {{Auditing package dependencies for security vulnerabilities}},
-howpublished = {\url{https://docs.npmjs.com/auditing-package-dependencies-for-security-vulnerabilities}},
-month = {},
-year = {2018},
-note = {(Accessed on 04/20/2020)}
-}
-
 @misc{Web:github_num_vul,
 author = {GitHub},
 title = {{How security alerts are keeping your code safer}},
@@ -1748,15 +1748,6 @@ title = {Fixing of Security Vulnerabilities in Open Source Projects: A Case Stud
 year = {2019},
 pages = {68-78},
 month = {apr}
-}
-
-@misc{Web:github_dependabot,
-author = {GitHub},
-title = {Keep all your packages up to date with Dependabot - The GitHub Blog},
-howpublished = {\url{https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/}},
-month = {},
-year = {2020},
-note = {(Accessed on 10/09/2020)}
 }
 
 @misc{Web:npm_audit_manual,
@@ -2162,23 +2153,6 @@ month={Oct},
 pages={289-298}, 
 ISSN={1095-1350}
 }
-
-@inproceedings{Lauinger2016ThouSN,
-author = {Lauinger, Tobias and Chaabane, Abdelberi and Arshad, Sajjad and Robertson, William and Wilson, Christo and Kirda, Engin},
-booktitle = {24th Network and Distributed System Security Symposium (NDSS)},
-title = {{Thou Shalt Not Depend on Me: Analysing the Use of Outdated JavaScript Libraries on the Web}},
-year = {2017},
-pages = {}
-}
-
-@inproceedings{Linares:2017,
- author = {Linares-V\'{a}squez, Mario and Bavota, Gabriele and Escobar-Vel\'{a}squez, Camilo},
- title = {{An Empirical Study on Android-related Vulnerabilities}},
- booktitle = MSR,
- year = {2017},
- pages = {2--13},
-} 
-
 
 %%%SKIP
 @INPROCEEDINGS{Borges:2016, 
@@ -2695,4 +2669,30 @@ howpublished = {\url{https://github.com/advisories}},
 month = {},
 year = {},
 note = {(Accessed on 01/13/2021)}
+}
+
+@inproceedings{Alfadel:SANER2021,
+  year = {2021},
+  month = mar,
+  publisher = {{IEEE}},
+  author = {Mahmoud Alfadel and Diego Elias Costa and Emad Shihab},
+  title = {Empirical Analysis of Security Vulnerabilities in Python Packages},
+  booktitle = SANER
+}
+
+@webpage{Web:octoverse,
+author = {GitHub},
+year = {2020},
+month = {September},
+title = {{The State of the Octoverse}},
+url = {https://octoverse.github.com/#securing-software},
+lastchecked = {15 June 202}
+}
+
+@inproceedings{Chen:VISSOFT2020,
+  year = {2020},
+  month = sep,
+  author = {Zhe Chen and Daniel M. German},
+  title = {{REM}: Visualizing the Ripple Effect on Dependencies Using Metrics of Health},
+  booktitle = VISSOFT
 }
